@@ -11,12 +11,11 @@ console.log(solution(id_list, report, k));
 
 function solution(id_list, report, k) {
   const answer = [];
-  let result = {};
+  let repoterStatusByMember = {};
   let suspect_info = {};
 
-  id_list.forEach((id) => (result[id] = []));
+  repoterStatusByMember = initReportStatusByMember(id_list);
 
-  // k가 1인 경우.. 다른 사용자가 신고헀을 때 메일 받을 필요는 없음..
   for (let data of report) {
     const [repoter, suspect] = data.split(" ");
 
@@ -27,23 +26,42 @@ function solution(id_list, report, k) {
       suspect_info[suspect].count += 1;
       suspect_info[suspect].repoter.push(repoter);
     } else {
-      suspect_info[suspect] = {
-        count: 1,
-        repoter: [repoter],
-      };
+      // 첫 신고 당하는 경우
+      suspect_info[suspect] = setFirstReport(repoter);
     }
 
     if (suspect_info[suspect].count >= k) {
       for (data of suspect_info[suspect].repoter) {
-        if (result[data].includes(suspect)) continue;
-        result[data].push(suspect);
+        if (repoterStatusByMember[data].includes(suspect)) continue;
+        repoterStatusByMember[data].push(suspect);
       }
     }
   }
 
-  for (const value of Object.values(result)) {
-    answer.push(value.length);
+  return mailReceiveCount(repoterStatusByMember);
+
+  function initReportStatusByMember(id_list) {
+    let result = {};
+
+    id_list.forEach((id) => (result[id] = []));
+
+    return result;
   }
 
-  return answer;
+  function setFirstReport(repoter) {
+    return {
+      count: 1,
+      repoter: [repoter],
+    };
+  }
+
+  function mailReceiveCount(repoterStatusByMember) {
+    const result = [];
+
+    for (const value of Object.values(repoterStatusByMember)) {
+      result.push(value.length);
+    }
+
+    return result;
+  }
 }
