@@ -11,32 +11,23 @@ console.log(solution(id_list, report, k));
 
 function solution(id_list, report, k) {
   const answer = [];
-  let repoterStatusByMember = {};
   let suspect_info = {};
-
-  repoterStatusByMember = initReportStatusByMember(id_list);
 
   for (let data of report) {
     const [repoter, suspect] = data.split(" ");
 
     if (suspect_info[suspect]) {
-      // 한 번에 한명만 신고 가능
+      // // 한 번에 한명만 신고 가능
       if (suspect_info[suspect].repoter.includes(repoter)) continue;
-
-      suspect_info[suspect].count += 1;
-      suspect_info[suspect].repoter.push(repoter);
+      // 전과자 신고
+      suspect_info[suspect] = reportExConvict(suspect_info[suspect], repoter);
     } else {
-      // 첫 신고 당하는 경우
+      // 처음 신고 당하는 경우
       suspect_info[suspect] = setFirstReport(repoter);
     }
-
-    if (suspect_info[suspect].count >= k) {
-      for (data of suspect_info[suspect].repoter) {
-        if (repoterStatusByMember[data].includes(suspect)) continue;
-        repoterStatusByMember[data].push(suspect);
-      }
-    }
   }
+
+  const repoterStatusByMember = checkBadMember(id_list, suspect_info, k);
 
   return mailReceiveCount(repoterStatusByMember);
 
@@ -48,11 +39,35 @@ function solution(id_list, report, k) {
     return result;
   }
 
+  function reportExConvict(suspect, repoter) {
+    const result = [];
+
+    result.count = suspect.count + 1;
+    result.repoter = suspect.repoter.concat(repoter);
+
+    return result;
+  }
+
   function setFirstReport(repoter) {
     return {
       count: 1,
       repoter: [repoter],
     };
+  }
+
+  function checkBadMember(id_list, suspects, count) {
+    let result = initReportStatusByMember(id_list);
+
+    for (const [suspect, info] of Object.entries(suspects)) {
+      if (info.count >= count) {
+        for (const repoter of info.repoter) {
+          if (result[repoter].find((data) => data === suspect)) continue;
+          result[repoter].push(suspect);
+        }
+      }
+    }
+
+    return result;
   }
 
   function mailReceiveCount(repoterStatusByMember) {
