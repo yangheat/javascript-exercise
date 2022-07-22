@@ -1,12 +1,6 @@
-const new_id = "...!@BaT#*..y.abcdefghijklm";
-// const new_id = "z-+.^.";
-// const new_id = "=.=";
-// const new_id = "123_.def";
-// const new_id = "abcdefghijklmn.p";
+module.exports = new_id_recommendation;
 
-console.log(solution(new_id));
-
-function solution(new_id) {
+function new_id_recommendation(new_id) {
   let first = new_id.toLowerCase();
   let second = first.replace(/[^\w-.]/g, "");
   let three = second.replace(/(\.){2,}/g, ".");

@@ -1,16 +1,6 @@
-const id_list = ["muzi", "frodo", "apeach", "neo"];
-const report = [
-  "muzi frodo",
-  "apeach frodo",
-  "frodo neo",
-  "muzi neo",
-  "apeach muzi",
-];
-const k = 2;
-console.log(solution(id_list, report, k));
+module.exports = report;
 
-function solution(id_list, report, k) {
-  const answer = [];
+function report(id_list, report, k) {
   let suspect_info = {};
 
   for (let data of report) {
