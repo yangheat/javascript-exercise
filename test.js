@@ -58,3 +58,12 @@ test("2021 KAKAO BLIND RECRUITMENT > 신규 아이디 추천", () => {
     "abcdefghijklmn"
   );
 });
+
+const number_string_word = require("./kakao/number_string_word");
+test("2021 카카오 채용연계형 인턴십 > 숫자 문자열과 영단어", () => {
+  expect(number_string_word("one4seveneight")).toStrictEqual(1478);
+  expect(number_string_word("23four5six7")).toStrictEqual(234567);
+  expect(number_string_word("2three45sixseven")).toStrictEqual(234567);
+  expect(number_string_word("123")).toStrictEqual(123);
+  expect(number_string_word("twotwo")).toStrictEqual(22);
+});
