@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/yangheat/programmers-coding-test/issues"
   },
-  "homepage": "https://github.com/yangheat/programmers-coding-test#readme"
+  "homepage": "https://github.com/yangheat/programmers-coding-test#readme",
+  "devDependencies": {
+    "jest": "^29.0.3"
+  }
 }
