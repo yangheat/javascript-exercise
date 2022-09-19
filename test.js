@@ -84,3 +84,8 @@ const even_and_odd = require('./pratice/even_and_odd');
 test("짝수와 홀수", () => {
     expect(even_and_odd(1)).toStrictEqual('Odd');
 });
+
+const add_digit = require('./pratice/add_digit');
+test('자릿수 더하기', () => {
+  expect(add_digit(123)).toStrictEqual(6);
+});
