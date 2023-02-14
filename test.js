@@ -89,3 +89,9 @@ const add_digit = require('./pratice/add_digit');
 test('자릿수 더하기', () => {
   expect(add_digit(123)).toStrictEqual(6);
 });
+
+const babbling = require('./pratice/babbling')
+test('옹알이', () => {
+  expect(babbling(["aya", "yee", "u", "maa", "wyeoo"])).toStrictEqual(1)
+  expect(babbling(["ayaye", "uuuma", "ye", "yemawoo", "ayaa"])).toStrictEqual(3)
+})
