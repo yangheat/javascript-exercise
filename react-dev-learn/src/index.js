@@ -1,13 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import TicTacToc from './tic-tac-toc/TicTacToc';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import ThinkingInReact from './thinking-in-react/ThinkingInReact';
+import TicTacToc from './tic-tac-toc/TicTacToc';
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <h1>Hello World!</h1>
+  },
+  {
+    path: "/thinking-in-react",
+    element: <ThinkingInReact />
   },
   {
     path: '/tic-tac-toc',
