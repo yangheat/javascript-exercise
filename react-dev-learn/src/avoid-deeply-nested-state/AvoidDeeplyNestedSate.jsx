@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useImmer } from "use-immer";
 import { initialTravelPlan } from './places.js';
 
 function PlaceTree ({ id, parentId, placesById, onComplete }) {
@@ -33,20 +33,23 @@ function PlaceTree ({ id, parentId, placesById, onComplete }) {
 }
 
 export default function AvoidDeeplyNestedState () {
-  const [plan, setPlan] = useState(initialTravelPlan)
-
+  const [plan, updatePlan] = useImmer(initialTravelPlan)
+  
   function handleComplete(parentId, id) {
-    const parent = plan[parentId]
-    const nextParent = {
-      ...parent,
-      childIds: parent.childIds.filter((childId) => {
+    updatePlan((draft) => {
+      // Remove from the parent place's child IDs
+      const parent = draft[parentId]
+      parent.childIds = parent.childIds.filter((childId) => {
         return childId !== id
       })
-    }
-    
-    setPlan({
-      ...plan,
-      [parentId]: nextParent
+
+      // Forget this place and all its subtree
+      deleteAllChildren(id)
+      function deleteAllChildren(id) {
+        const place = draft[id]
+        place.childIds.forEach(deleteAllChildren)
+        delete draft[id]
+      }
     })
   }
 
