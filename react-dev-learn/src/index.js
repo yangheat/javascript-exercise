@@ -5,6 +5,7 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import ThinkingInReact from './thinking-in-react/ThinkingInReact';
 import TicTacToc from './tic-tac-toc/TicTacToc';
 import AvoidDeeplyNestedState from './avoid-deeply-nested-state/AvoidDeeplyNestedSate';
+import FixDisappearingSelection from './fix-disappearing-selection/FixDisappearingSelection';
 
 const router = createBrowserRouter([{
     path: '/',
@@ -18,6 +19,9 @@ const router = createBrowserRouter([{
   }, {
     path: 'avoid-deeply-nested-state',
     element: <AvoidDeeplyNestedState />
+  }, {
+    path: 'fix-disappearing-selection',
+    element: <FixDisappearingSelection />
   }
 
 ])
