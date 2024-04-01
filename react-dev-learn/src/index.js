@@ -6,6 +6,7 @@ import ThinkingInReact from './thinking-in-react/ThinkingInReact';
 import TicTacToc from './tic-tac-toc/TicTacToc';
 import AvoidDeeplyNestedState from './avoid-deeply-nested-state/AvoidDeeplyNestedSate';
 import FixDisappearingSelection from './fix-disappearing-selection/FixDisappearingSelection';
+import ImplementMultipleSelection from './Implement-multiple-selection/ImplementMultipleSelection';
 
 const router = createBrowserRouter([{
     path: '/',
@@ -17,11 +18,14 @@ const router = createBrowserRouter([{
     path: '/tic-tac-toc',
     element: <TicTacToc />
   }, {
-    path: 'avoid-deeply-nested-state',
+    path: '/avoid-deeply-nested-state',
     element: <AvoidDeeplyNestedState />
   }, {
-    path: 'fix-disappearing-selection',
+    path: '/fix-disappearing-selection',
     element: <FixDisappearingSelection />
+  }, {
+    path: '/implement-multiple-selection',
+    element: <ImplementMultipleSelection />
   }
 
 ])
