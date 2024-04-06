@@ -1,7 +1,9 @@
+import { useCallback } from 'react'
 import { useEffect, useState } from 'react'
 
+const TIME_REGEX = /^([01]?[0-9]|2[0-3]):[0-5][0-9]$/
+
 export default function CompareExercise() {
-  const TIME_REGEX = /^([01]?[0-9]|2[0-3]):[0-5][0-9]$/
   const [dayStart, setDayStart] = useState('07:30')
   const [dayEnd, setDayEnd] = useState('17:45')
   const [startTime, setStartTime] = useState('07:30')
@@ -20,7 +22,7 @@ export default function CompareExercise() {
     return hour * 60 + minute
   }
 
-  function scheduleMeeting() {
+  const scheduleMeeting = useCallback(async () => {
     let meetingStartTimeToMinute
     let dayStartTimeToMinute
     let dayEndTimeToMinute
@@ -63,11 +65,11 @@ export default function CompareExercise() {
       console.error(err.message)
       setMeeting(false)
     }
-  }
+  }, [dayStart, dayEnd, startTime, durationMinutes])
 
   useEffect(() => {
     scheduleMeeting()
-  }, [dayStart, dayEnd, startTime, durationMinutes, meeting, resultTime])
+  }, [scheduleMeeting])
 
   return (
     <div className="flex justify-center h-screen items-center bg-gray-100">
