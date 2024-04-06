@@ -1,0 +1,1 @@
+https://react.dev/learn/choosing-the-state-structure#avoid-deeply-nested-state
