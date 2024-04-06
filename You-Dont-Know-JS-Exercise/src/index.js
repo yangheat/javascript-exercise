@@ -9,7 +9,7 @@ import './index.css'
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <h1 class="text-3xl font-bold underline">Hello world!</h1>,
+    element: <Home />,
   },
   {
     path: '/compare-exercise',
