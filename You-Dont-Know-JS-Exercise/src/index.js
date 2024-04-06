@@ -1,7 +1,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import CloserExercise from './closer-exercise/CloserExercise'
 import CompareExercise from './compare-exercise/compare-exercise'
+import Home from './Home'
 import './index.css'
 
 const router = createBrowserRouter([
@@ -12,6 +14,10 @@ const router = createBrowserRouter([
   {
     path: '/compare-exercise',
     element: <CompareExercise />,
+  },
+  {
+    path: '/closer-exercise',
+    element: <CloserExercise />,
   },
 ])
 
