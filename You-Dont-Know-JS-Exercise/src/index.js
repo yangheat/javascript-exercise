@@ -5,6 +5,7 @@ import CloserExercise from './closer-exercise/CloserExercise'
 import CompareExercise from './compare-exercise/compare-exercise'
 import Home from './Home'
 import './index.css'
+import Prototypeexercise from './prototype-exercise/Prototype-exercise'
 
 const router = createBrowserRouter([
   {
@@ -18,6 +19,10 @@ const router = createBrowserRouter([
   {
     path: '/closer-exercise',
     element: <CloserExercise />,
+  },
+  {
+    path: '/prototype-exercise',
+    element: <Prototypeexercise />,
   },
 ])
 
